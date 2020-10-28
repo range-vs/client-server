@@ -20,6 +20,3 @@ int WinMain(HINSTANCE hInst, HINSTANCE prewHInst, LPSTR lpCmdLine, int nShowCmd)
 
 	return 0;
 }
-
-// написать краткую инструкцию
-// залить на гит
