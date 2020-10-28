@@ -23,6 +23,8 @@ namespace WpfWindow
 
 	public ref class ViewModel : INotifyPropertyChanged
 	{
+		System::Threading::Thread^ threadClient;
+
 		System::String^ _textData;
 		StringBuilderListening^ _logger;
 
@@ -132,5 +134,8 @@ namespace WpfWindow
 		virtual event System::ComponentModel::PropertyChangedEventHandler^ PropertyChanged;
 
 		void OnPropertyChanged(System::String^ prop);
+	
+	protected:
+		!ViewModel();
 	};
 }

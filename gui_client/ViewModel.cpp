@@ -19,9 +19,9 @@ namespace WpfWindow
 		net = gcnew NetPoint();
 		SocketData sd = PropertiesReader::readConfig("configs/client/properties.xml");
 		HelpData^ hd = gcnew HelpData(gcnew System::String(sd.address.c_str()), gcnew System::String(sd.port.c_str()), net, _logger);
-		System::Threading::Thread^ t = gcnew System::Threading::Thread(gcnew System::Threading::ThreadStart(hd, &HelpData::ThreadProc));
-		t->IsBackground = true;
-		t->Start();
+		threadClient = gcnew System::Threading::Thread(gcnew System::Threading::ThreadStart(hd, &HelpData::ThreadProc));
+		threadClient->IsBackground = true;
+		threadClient->Start();
 	}
 
 
@@ -63,4 +63,10 @@ namespace WpfWindow
 		if (prop)
 			PropertyChanged(this, gcnew PropertyChangedEventArgs(prop));
 	}
+
+	ViewModel::!ViewModel()
+	{
+		threadClient->Join();
+	}
+
 };
