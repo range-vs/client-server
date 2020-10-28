@@ -1,0 +1,29 @@
+<Window xmlns ="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        Width="784" Height="282" Title="Client" WindowStartupLocation="CenterScreen">
+
+    <Grid  Name="rootPanel">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Height="25" VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="Open" Command="{Binding OpenFile}"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Send hash to server" Command="{Binding SendMessage}"></MenuItem>
+        </Menu>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox IsReadOnly="True" Grid.Column ="0" Text="{Binding TextData,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <StackPanel Grid.Column="1">
+                <TextBlock Text="Select method request:"/>
+                <RadioButton GroupName="Method" Content="ADD" IsChecked="{Binding Add}" />
+                <RadioButton GroupName="Method" Content="CHECK" IsChecked="{Binding Check}"/>
+                <RadioButton GroupName="Method" Content="DELETE" IsChecked="{Binding Delete}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
